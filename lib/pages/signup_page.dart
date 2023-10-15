@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:forms/pages/signup_page.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignupPageState extends State<SignupPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -66,8 +65,8 @@ class _LoginPageState extends State<LoginPage> {
                 heightSpacing,
                 _buildPasswordTextFormField(passwordValidator, contentPadding),
                 heightSpacing,
+                _buildSignupButton(),
                 _buildLoginButton(),
-                _buildSignUpButton(),
               ],
             ),
           ),
@@ -76,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  FilledButton _buildLoginButton() {
+  FilledButton _buildSignupButton() {
     return FilledButton.tonal(
       onPressed: () {
         final currentState = loginFormState.currentState;
@@ -86,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
           debugPrint('Password: ${passwordController.text}');
         }
       },
-      child: const Text('Login'),
+      child: const Text('Sign Up'),
     );
   }
 
@@ -131,14 +130,10 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  TextButton _buildSignUpButton() {
+  TextButton _buildLoginButton() {
     return TextButton(
-      onPressed: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const SignupPage(),
-          )),
-      child: const Text("Don't have an account? Sign up here"),
+      onPressed: () => Navigator.pop(context),
+      child: const Text('Already have an account? Log in here'),
     );
   }
 }
